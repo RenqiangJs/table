@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        ul li {
+            list-style: none;
+            display: inline-block;
+            border: 1px solid dodgerblue;
+            height: 30px;
+            line-height: 30px;
+            width: 120px;
+            text-align: center;
+        }
+    </style>
+    <script src="./vue.min.js"></script>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li v-on:click="qh(true)">
+           <span >二维码登录</span>
+        </li>
+        <li v-on:click="qh(false)">
+            <span >邮箱登录</span>
+        </li>
+    </ul>
+    <div style="margin-left:80px" v-if="temp">
+        <img src="getUrlQrcode.jpg" alt="">
+    </div>
+
+    <div style="margin-left:80px" v-if="!temp">
+        <form action="https://mail.163.com/" method="post">
+            <p><input type="email"></p>
+            <p><input type="password"></p>
+            <p><input type="submit" value="登录"></p>
+        </form>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            temp:true
+        },
+        methods:{
+            qh:function (t) {
+                console.log(t);
+                this.temp=t
+            }
+        }
+    })
+</script>
+</body>
+</html>
